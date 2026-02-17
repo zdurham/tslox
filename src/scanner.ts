@@ -160,6 +160,29 @@ export class Scanner {
     this.addToken(type)
   }
 
+<<<<<<< Updated upstream
+=======
+  multiLineComment() {
+    while (this.peek() !== '*' && this.peekNext() !== "/" && !this.isAtEnd()) {
+      // we are ok with strings across multiple lines
+      if (this.peek() == '\n') {
+        this.line++;
+      }
+      this.advance();
+    }
+
+    if (this.isAtEnd()) {
+      error(this.line, "Unterminated string")
+      return
+    }
+
+    // consume *
+    this.advance();
+    // consume /
+    this.advance();
+  }
+
+>>>>>>> Stashed changes
   isDigit(char: string): boolean {
     return !isNaN(parseInt(char));
   }
@@ -205,6 +228,11 @@ export class Scanner {
           while (this.peek() != '\n' && !this.isAtEnd()) {
             this.advance();
           }
+<<<<<<< Updated upstream
+=======
+        } else if (this.match("*")) {
+          this.multiLineComment();
+>>>>>>> Stashed changes
         } else {
           this.addToken(TokenType.SLASH);
         }
