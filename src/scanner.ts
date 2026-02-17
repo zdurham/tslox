@@ -162,7 +162,6 @@ export class Scanner {
 
   multiLineComment() {
     while (this.peek() !== '*' && this.peekNext() !== "/" && !this.isAtEnd()) {
-      // we are ok with strings across multiple lines
       if (this.peek() == '\n') {
         this.line++;
       }
