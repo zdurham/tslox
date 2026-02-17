@@ -1,0 +1,21 @@
+{
+  "name": "tslox",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx main.ts"
+  },
+  "keywords": [
+    "lox",
+    "interpeters",
+    "interpeter"
+  ],
+  "author": "Zach Durham-Nash",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}
