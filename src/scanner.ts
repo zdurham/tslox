@@ -160,6 +160,25 @@ export class Scanner {
     this.addToken(type)
   }
 
+  multiLineComment() {
+    while (this.peek() !== '*' && this.peekNext() !== "/" && !this.isAtEnd()) {
+      if (this.peek() == '\n') {
+        this.line++;
+      }
+      this.advance();
+    }
+
+    if (this.isAtEnd()) {
+      error(this.line, "Unterminated string")
+      return
+    }
+
+    // consume *
+    this.advance();
+    // consume /
+    this.advance();
+  }
+
   isDigit(char: string): boolean {
     return !isNaN(parseInt(char));
   }
@@ -175,8 +194,6 @@ export class Scanner {
 
   scanToken(): void {
     var char = this.advance();
-    // TODO: add regex for string values and keywords
-    //
     switch (char) {
       case '(': this.addToken(TokenType.LEFT_PAREN); break;
       case ')': this.addToken(TokenType.RIGHT_PAREN); break;
@@ -205,6 +222,8 @@ export class Scanner {
           while (this.peek() != '\n' && !this.isAtEnd()) {
             this.advance();
           }
+        } else if (this.match("*")) {
+          this.multiLineComment();
         } else {
           this.addToken(TokenType.SLASH);
         }
