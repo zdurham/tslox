@@ -160,8 +160,6 @@ export class Scanner {
     this.addToken(type)
   }
 
-<<<<<<< Updated upstream
-=======
   multiLineComment() {
     while (this.peek() !== '*' && this.peekNext() !== "/" && !this.isAtEnd()) {
       // we are ok with strings across multiple lines
@@ -182,7 +180,6 @@ export class Scanner {
     this.advance();
   }
 
->>>>>>> Stashed changes
   isDigit(char: string): boolean {
     return !isNaN(parseInt(char));
   }
@@ -198,8 +195,6 @@ export class Scanner {
 
   scanToken(): void {
     var char = this.advance();
-    // TODO: add regex for string values and keywords
-    //
     switch (char) {
       case '(': this.addToken(TokenType.LEFT_PAREN); break;
       case ')': this.addToken(TokenType.RIGHT_PAREN); break;
@@ -228,11 +223,8 @@ export class Scanner {
           while (this.peek() != '\n' && !this.isAtEnd()) {
             this.advance();
           }
-<<<<<<< Updated upstream
-=======
         } else if (this.match("*")) {
           this.multiLineComment();
->>>>>>> Stashed changes
         } else {
           this.addToken(TokenType.SLASH);
         }
